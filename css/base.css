@@ -1,0 +1,129 @@
+/* base.css ── 色板（取樣自序章短片）、字體、字級、宣紙紋理、基礎元素 */
+/* 霞鶩文楷 TC 的「為」是「爲」字形；以 Noto Serif HK 單字子集（OFL，自託管）覆蓋此字，符合香港字形 */
+@font-face{ font-family:"XC HK Fix"; src:url("../assets/fonts/hk-fix-400.woff2") format("woff2"); font-weight:400; unicode-range:U+70BA; font-display:swap; }
+@font-face{ font-family:"XC HK Fix"; src:url("../assets/fonts/hk-fix-700.woff2") format("woff2"); font-weight:700; unicode-range:U+70BA; font-display:swap; }
+:root{
+  /* 宣紙 */ --paper-50:#E5DDCB; --paper-100:#DAD1C1; --paper-200:#CAC1B0; --paper-300:#ACA497;
+  /* 墨 */   --ink-900:#0C0B0B; --ink-800:#242322; --ink-700:#3B4145; --ink-500:#585551; --ink-300:#847F77;
+  /* 長夜 */ --night-950:#07090B; --night-900:#161C20; --night-800:#262F35; --night-700:#384650; --night-600:#4B5963; --night-500:#506173;
+  /* 月 */   --moon:#D3C5B7;
+  /* 燈火（唯一強調色） */ --lamp-300:#F4D9A2; --lamp-400:#F4CB99; --lamp-500:#EDC089; --lamp-600:#E7BD73;
+  --ember:#D6915D; --ochre:#A67952; --umber:#765339; --flame-core:#FD7108;
+  /* 青綠 */ --jade-900:#234D57; --jade-800:#2C4042; --jade-700:#3B5C4F; --jade-600:#496564; --leaf:#4C764F;
+  /* 袍褐 */ --robe-700:#685A4E; --robe-600:#857465; --robe-500:#A4917E; --robe-400:#BCAC99;
+  /* 字幕 */ --subtitle:#F3EEE4;
+
+  --serif:"Noto Serif HK","Noto Serif TC","Source Han Serif TC","Source Han Serif","PMingLiU","MingLiU",serif;
+  --kai:"XC HK Fix","LXGW WenKai TC","Noto Serif HK","Noto Serif TC","PMingLiU",serif;
+  --en:"EB Garamond","Cormorant Garamond",Georgia,"Times New Roman",serif;
+  /* 字級：1080p 投影正文 ≥ 28px；平板 ≥ 18px */
+  --fs:clamp(16px, calc(0.9vw + 0.75vh + 3px), 30px);
+  --ease:cubic-bezier(.45,.05,.35,1);
+  --glow:0 0 .6rem rgba(244,203,153,.55), 0 0 1.6rem rgba(237,192,137,.25);
+  --paper-tex:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9 .04' numOctaves='3' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 .25 0 0 0 0 .22 0 0 0 0 .18 0 0 0 .11 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"), url("../assets/img/common/paper-tile.webp");
+}
+html.zoom{ --fs:clamp(20px, calc((0.9vw + 0.75vh + 3px) * 1.25), 38px); }
+*,*::before,*::after{ box-sizing:border-box; }
+html{ font-size:var(--fs); -webkit-text-size-adjust:100%; height:100%; }
+body{ margin:0; min-height:100%; background:var(--night-950); color:var(--ink-800); font-family:var(--serif); line-height:1.6; overflow:hidden; -webkit-font-smoothing:antialiased; }
+h1,h2,h3,h4{ font-family:var(--kai); font-weight:700; line-height:1.3; margin:0 0 .4em; letter-spacing:.04em; }
+p{ margin:0 0 .6em; }
+a{ color:inherit; text-decoration-color:var(--lamp-600); text-underline-offset:.2em; }
+a:hover{ color:var(--umber); }
+.theme-night a:hover{ color:var(--lamp-300); }
+img{ max-width:100%; display:block; }
+button{ font:inherit; color:inherit; }
+[hidden]{ display:none !important; }
+.en{ font-family:var(--en); letter-spacing:.01em; }
+.it{ font-style:italic; }
+.center{ text-align:center; }
+.fine{ font-size:.66rem; color:var(--ink-500); line-height:1.5; }
+.theme-night .fine{ color:var(--paper-300); }
+.lead{ font-size:1.05rem; }
+.sr-only{ position:absolute !important; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+mark.verify{ background:rgba(237,192,137,.35); color:inherit; padding:0 .15em; border-radius:2px; }
+:focus-visible{ outline:3px solid var(--lamp-500); outline-offset:3px; border-radius:4px; }
+.theme-paper :focus-visible{ outline-color:var(--umber); }
+.ico{ width:1.15em; height:1.15em; fill:none; stroke:currentColor; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; flex:none; vertical-align:-.18em; }
+
+/* 宣紙紋理（SVG feTurbulence ＋ WebP 後備）與四角暈影 */
+.paper-bg,.theme-paper{ background-color:var(--paper-100); background-image:radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, rgba(36,35,34,.22) 100%), var(--paper-tex); background-size:100% 100%, 320px 320px, 512px 512px; }
+
+/* 按鈕：主要＝一抹濃墨筆刷；次要＝淡墨線框；觸控目標 ≥ 48px */
+.btn{ position:relative; display:inline-flex; align-items:center; justify-content:center; gap:.4em; min-height:max(48px, 1.75rem); min-width:max(48px, 1.75rem); padding:.25em .9em; border:0; cursor:pointer; font-family:var(--serif); font-size:.72rem; line-height:1.2; letter-spacing:.05em; overflow:hidden; transition:box-shadow .3s var(--ease), color .3s, background-color .3s, opacity .3s; -webkit-tap-highlight-color:transparent; touch-action:manipulation; }
+.btn:disabled{ opacity:.5; cursor:default; }
+.btn-brush{ color:var(--paper-50); background:var(--ink-900); border-radius:42% 14% 40% 12% / 22% 46% 18% 50%; box-shadow:inset 0 0 0 1px rgba(255,255,255,.04); padding:.3em 1.2em; }
+.btn-brush::before{ content:""; position:absolute; inset:0; background:repeating-linear-gradient(97deg, rgba(255,255,255,.05) 0 2px, transparent 2px 7px), linear-gradient(180deg, rgba(255,255,255,.06), transparent 40%, rgba(0,0,0,.25)); pointer-events:none; }
+.btn-brush:not(:disabled):hover,.btn-brush:focus-visible{ box-shadow:0 0 0 1px rgba(244,203,153,.5), var(--glow); color:var(--lamp-300); }
+.btn-line{ background:transparent; border:1.5px solid rgba(36,35,34,.55); border-radius:40% 12% 38% 14% / 30% 40% 26% 44%; color:var(--ink-800); }
+.theme-night .btn-line{ border-color:rgba(211,197,183,.55); color:var(--paper-50); }
+.btn-line:not(:disabled):hover{ border-color:var(--lamp-600); box-shadow:var(--glow); }
+.btn-line[aria-pressed="true"]{ background:rgba(237,192,137,.22); border-color:var(--lamp-600); }
+.theme-paper .btn-line[aria-pressed="true"]{ background:rgba(166,121,82,.18); border-color:var(--umber); }
+.btn-icon{ background:transparent; border:1.5px solid transparent; border-radius:50%; padding:.2em; }
+.btn-icon:hover{ border-color:rgba(237,192,137,.5); box-shadow:var(--glow); }
+.btn.sm{ font-size:.62rem; padding:.2em .7em; }
+.btn .ico{ width:1.25em; height:1.25em; }
+.ink-dot{ position:absolute; width:8px; height:8px; margin:-4px 0 0 -4px; border-radius:50%; background:rgba(237,192,137,.55); pointer-events:none; animation:inkdot .6s var(--ease) forwards; }
+.btn-line .ink-dot{ background:rgba(36,35,34,.3); }
+@keyframes inkdot{ to{ transform:scale(22); opacity:0; } }
+
+/* 標籤 */
+.tag{ display:inline-block; font-size:.58rem; padding:.08em .6em; margin:0 .2em .2em 0; border:1px solid rgba(36,35,34,.35); border-radius:1em; letter-spacing:.05em; white-space:nowrap; }
+.theme-night .tag{ border-color:rgba(211,197,183,.45); color:var(--paper-100); }
+.tag-value{ border-color:var(--lamp-600) !important; background:rgba(237,192,137,.18); color:inherit; }
+
+/* 輸入 */
+.inp{ font:inherit; font-size:.74rem; width:100%; padding:.45em .65em; min-height:48px; border:1.5px solid rgba(36,35,34,.4); border-radius:6px 3px 7px 2px; background:rgba(255,253,247,.75); color:var(--ink-900); line-height:1.5; }
+textarea.inp{ resize:vertical; }
+.theme-night .inp{ background:rgba(12,11,11,.55); color:var(--paper-50); border-color:rgba(211,197,183,.45); }
+.inp:focus{ outline:none; border-color:var(--lamp-600); box-shadow:0 0 0 3px rgba(237,192,137,.3); }
+select.inp{ width:auto; }
+.fld{ display:block; margin:0 0 .7rem; }
+.fld-l{ display:block; font-family:var(--kai); font-weight:700; font-size:.8rem; margin-bottom:.2rem; }
+.fld-h{ font-size:.62rem; color:var(--ink-500); margin:0 0 .3rem; }
+.theme-night .fld-h{ color:var(--paper-300); }
+.fld-c{ display:block; text-align:right; font-size:.56rem; color:var(--ink-500); min-height:1em; }
+.theme-night .fld-c{ color:var(--paper-300); }
+.fld.inline{ display:flex; flex-wrap:wrap; align-items:center; gap:.4rem .6rem; }
+.fld.inline .fld-l{ margin:0; }
+.fld.inline .inp{ flex:1 1 8rem; width:auto; }
+.chk{ display:inline-flex; align-items:center; gap:.35em; margin:.15rem .8rem .15rem 0; cursor:pointer; font-size:.68rem; min-height:40px; }
+.chk input{ width:1.1rem; height:1.1rem; accent-color:var(--umber); }
+.chips{ display:flex; flex-wrap:wrap; gap:.3rem; margin:.35rem 0 0; }
+.chip{ font:inherit; font-size:.6rem; padding:.25em .7em; min-height:40px; border:1px dashed rgba(118,83,57,.6); background:rgba(244,217,162,.22); border-radius:1em; cursor:pointer; color:inherit; position:relative; overflow:hidden; }
+.chip:hover{ background:rgba(244,217,162,.45); }
+.chip.static{ cursor:default; display:inline-flex; align-items:center; margin:.15rem; }
+.theme-night .chip{ border-color:rgba(244,203,153,.5); }
+
+/* 表格 */
+table{ border-collapse:collapse; width:100%; font-size:.66rem; }
+th,td{ padding:.4em .55em; border-bottom:1px solid rgba(36,35,34,.18); text-align:left; vertical-align:top; }
+thead th{ font-family:var(--kai); background:rgba(166,121,82,.12); }
+.tbl-wrap{ overflow-x:auto; }
+
+/* 提示、對話框 */
+.toast{ position:fixed; left:50%; bottom:5.5rem; transform:translate(-50%, 1rem); max-width:min(92vw, 34rem); background:rgba(12,11,11,.92); color:var(--paper-50); padding:.6em 1.1em; font-size:.68rem; border-radius:8px 3px 9px 4px; box-shadow:0 0 30px rgba(0,0,0,.4), inset 0 0 0 1px rgba(244,203,153,.25); opacity:0; transition:opacity .4s var(--ease), transform .4s var(--ease); z-index:9000; pointer-events:none; }
+.toast.in{ opacity:1; transform:translate(-50%, 0); }
+.modal-back{ position:fixed; inset:0; z-index:8000; display:flex; align-items:center; justify-content:center; padding:1rem; background:rgba(7,9,11,.55); opacity:0; transition:opacity .3s var(--ease); }
+.modal-back.in{ opacity:1; }
+.modal{ position:relative; width:min(94vw, 30rem); max-height:88vh; overflow:auto; padding:1.2rem 1.3rem 1rem; transform:translateY(.6rem); transition:transform .3s var(--ease); }
+.modal-back.in .modal{ transform:none; }
+.modal-title{ font-size:1rem; padding-right:2rem; }
+.modal-body{ font-size:.72rem; }
+.modal-acts{ display:flex; flex-wrap:wrap; justify-content:flex-end; gap:.5rem; margin-top:.8rem; }
+.modal-x{ position:absolute; top:.35rem; right:.35rem; }
+.hint-txt{ font-size:.8rem; line-height:1.7; }
+#live{ position:absolute; left:-9999px; }
+.storage-warn{ position:fixed; z-index:9500; left:50%; top:.5rem; transform:translateX(-50%); display:flex; align-items:center; gap:.5rem; max-width:94vw; background:var(--paper-50); color:var(--ink-900); border:1px solid var(--ochre); padding:.3rem .4rem .3rem .9rem; font-size:.62rem; box-shadow:0 6px 18px rgba(0,0,0,.3); border-radius:4px; }
+.err{ color:var(--paper-50); background:rgba(12,11,11,.8); padding:1rem; }
+.site-foot{ margin:0; font-size:max(11px, .46rem); color:rgba(211,197,183,.62); text-align:center; letter-spacing:.04em; padding:.15rem .5rem; }
+.theme-paper .site-foot{ color:rgba(59,65,69,.72); }
+
+@media (prefers-reduced-motion: reduce){ *,*::before,*::after{ animation-duration:.3s !important; animation-iteration-count:1 !important; transition-duration:.3s !important; } }
+html.rm *,html.rm *::before,html.rm *::after{ animation-duration:.3s !important; animation-iteration-count:1 !important; transition-duration:.3s !important; }
+/* 簡體顯示：港版字型已涵蓋絕大部分簡體字，個別缺字（如「恻」）由 Noto Serif SC 補上 */
+html.hans{
+  --serif:"Noto Serif HK","Noto Serif SC","Noto Serif TC","Source Han Serif SC","Source Han Serif",serif;
+  --kai:"LXGW WenKai TC","Noto Serif HK","Noto Serif SC","Noto Serif TC",serif;
+}

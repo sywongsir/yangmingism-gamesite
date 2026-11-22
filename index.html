@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>心學心傳．古為今用</title>
+<meta name="description" content="初中價值觀教育互動遊戲網站：跟隨王陽明走過六個燈站——立志、良知、知行合一、致良知、承傳與創新、同心同行。">
+<meta name="theme-color" content="#07090B">
+<meta name="referrer" content="no-referrer">
+<meta property="og:title" content="心學心傳．古為今用">
+<meta property="og:description" content="陽明心學與價值觀教育的互動遊戲網站（六節，每節四十分鐘）。">
+<meta property="og:image" content="assets/img/common/og-cover.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307090B'/%3E%3Cpath d='M32 8C44 22 45 34 32 44C19 34 20 22 32 8Z' fill='%23EDC089'/%3E%3Cpath d='M32 24C37 31 37 37 32 44C27 37 27 31 32 24Z' fill='%23FD7108'/%3E%3Cpath d='M14 44C20 56 44 56 50 44Z' fill='%23585551'/%3E%3C/svg%3E">
+<!-- 對外連線只限字型（於頁尾腳本延後載入）；載入失敗時使用後備字型，網站照常運作 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=LXGW+WenKai+TC:wght@400;700&family=Noto+Serif+HK:wght@400&display=swap"></noscript>
+<link rel="preload" as="image" href="assets/img/hub/mist-1.webp" type="image/webp">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/layers.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/l23.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/l4.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/l5.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/l6.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/print.css" media="print" onload="this.media='all'">
+</head>
+<body>
+<a class="sr-only" href="#hub">跳到主要內容</a>
+<main id="hub" aria-label="長夜山河圖（主頁）"></main>
+<div id="layers"></div>
+<div id="live" aria-live="polite" aria-atomic="true"></div>
+<div id="print-root"></div>
+<noscript><p style="color:#E5DDCB;padding:2rem;font-size:20px">本網站需要啟用 JavaScript。</p></noscript>
+
+<script src="js/config.js"></script>
+<script src="js/core/storage.js"></script>
+<script src="js/core/hans-dict.js"></script>
+<script src="js/core/hans.js"></script>
+<script src="js/core/state.js"></script>
+<script src="js/core/audio.js"></script>
+<script src="js/core/fx-ink.js"></script>
+<script src="js/core/fx-particles.js"></script>
+<script src="js/core/ui.js"></script>
+<script src="js/core/timer.js"></script>
+<script src="js/core/export.js"></script>
+<script src="js/core/scene.js"></script>
+<script src="js/core/router.js"></script>
+<script src="js/core/teacher.js"></script>
+<script src="js/core/kit.js"></script>
+<script src="js/content/common.js"></script>
+<script src="js/core/app.js"></script>
+<script>
+/* 網頁字型在首屏圖片載入後才載入（先用後備字型，載入後自動替換；最遲 3 秒），以免與首屏爭頻寬 */
+(function () {
+  function f() { if (document.getElementById('gf')) return; var l = document.createElement('link'); l.id = 'gf'; l.rel = 'stylesheet';
+    l.href = 'https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=LXGW+WenKai+TC:wght@400;700&family=Noto+Serif+HK:wght@400&display=swap'; document.head.appendChild(l); }
+  if (document.readyState === 'complete') setTimeout(f, 0);
+  else { window.addEventListener('load', function () { setTimeout(f, 0); }); setTimeout(f, 3000); }
+})();
+</script>
+</body>
+</html>
